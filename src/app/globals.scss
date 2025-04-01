@@ -1,0 +1,89 @@
+:root {
+  /* colors */
+  --color-dark-main: #020202;
+  --color-dark-card: #0f0f0f;
+  --color-gray-text: #5f6368;
+  --color-border: #02020233;
+  --color-gray: #e2e2e2;
+  --color-white-main: #f1f1f1;
+  --color-white: #f0efef;
+  --color-blue: #146ef5;
+} //первый цветовой вариант
+
+// :root {
+//   // colors
+//   --color-dark: #121722;
+//   --color-yellow: #ffce32;
+//   --color-white: #ffffff;
+//   --color-blue: #1d63ff;
+// } //второй цветовой вариант
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.6;
+  color: var(--color-dark-main);
+  background-color: var(--color-white-main);
+  width: 100vw;
+  min-width: 320px;
+  min-height: 100dvh;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-dark-main);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: inherit;
+}

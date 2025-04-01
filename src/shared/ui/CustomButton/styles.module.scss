@@ -1,0 +1,45 @@
+.customButton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-white-main);
+  color: var(--color-white-main);
+  padding: 8px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  font-size: 20px;
+  font-weight: 500;
+  z-index: 1;
+
+  &:hover {
+    color: var(--color-dark-main);
+    transform: scale(0.95);
+  }
+
+  &[data-disabled="true"] {
+    cursor: no-drop;
+    background-color: var(--color-gray-text);
+    border: 1px solid var(--color-gray-text);
+    color: var(--color-white-main);
+  }
+}
+
+.customButton:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: var(--color-dark-main);
+  height: 150px;
+  width: 200px;
+  transition: all 0.5s;
+}
+
+.customButton:hover:before {
+  bottom: 100%;
+  left: 0;
+}
