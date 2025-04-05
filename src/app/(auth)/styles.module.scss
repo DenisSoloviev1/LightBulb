@@ -38,7 +38,7 @@
 
   a {
     position: relative;
-    color: var(--color-blue);
+    color: var(--color-gray-text);
     text-decoration: none;
   }
 
@@ -48,14 +48,15 @@
     width: 0;
     height: 2px;
     bottom: 2px;
-    left: 0;
+    left: 50%;
     border-radius: 4px;
     background-color: var(--color-dark-main);
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   a:hover::after {
     width: 100%;
+    left: 0;
   }
 }
 
@@ -74,7 +75,7 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(20, 110, 245, 0.3);
+  background: rgb(253, 219, 58, 0.6);
   animation: animate 25s linear infinite;
   bottom: -150px;
 }

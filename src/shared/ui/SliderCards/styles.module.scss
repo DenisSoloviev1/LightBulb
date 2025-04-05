@@ -1,0 +1,36 @@
+.scrollingWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.scrollingContainer {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.card {
+  width: 250px;
+  height: 100px;
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 24px;
+
+  span {
+    font-weight: 700;
+    font-size: 32px;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

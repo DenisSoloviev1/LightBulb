@@ -6,3 +6,8 @@ export const RolesDict = {
 } as const;
 
 export type Roles = ValueOf<typeof RolesDict>;
+
+export interface ISliderCard {
+  number: string;
+  text: string;
+}
