@@ -12,7 +12,22 @@ export default function Layout({
         <NavBar />
       </header>
 
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        {children}
+
+        <ul className={styles.circles}>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </main>
     </>
   );
 }

@@ -7,6 +7,7 @@ import { ICalc } from "../model";
  * @return Promise с результатом операции.
  * @throws Ошибку при неудачном запросе
  */
+
 export async function calcRate(data: ICalc): Promise<{
   cost3CK: number;
   cost4CK: number;
