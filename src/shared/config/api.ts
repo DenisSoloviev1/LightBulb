@@ -13,18 +13,16 @@ import { API_URLS } from "./params";
 export const apiRequest = async <T>(
   method: Method,
   endpoint: string,
-  auth?: string,
   data?: object,
   params?: object,
 ): Promise<T> => {
   try {
     const config: AxiosRequestConfig = {
       method,
-      url: `${API_URLS.API_1}${endpoint}`, // Полный URL
+      url: `${API_URLS.BASE_URL}${endpoint}`, // Полный URL
       data, // Тело запроса
       params, // Если метод GET - параметры в URL
       headers: {
-        Authorization: `Bearer ${auth}`,
         "Content-Type": "application/json",
       },
     };

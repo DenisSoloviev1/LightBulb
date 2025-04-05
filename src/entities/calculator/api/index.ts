@@ -1,5 +1,6 @@
 import { API_URLS } from "@/shared/config/params";
 import { ICalc } from "../model";
+import { apiRequest } from "@/shared/config";
 
 /**
  * Рассчет тарифа.
@@ -13,21 +14,12 @@ export async function calcRate(data: ICalc): Promise<{
   cost4CK: number;
 }> {
   try {
-    const response = await fetch(`${API_URLS.BASE_URL}/calculator/calculate`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const pesponse = apiRequest<{
+      cost3CK: number;
+      cost4CK: number;
+    }>("POST", `${API_URLS.BASE_URL}/calculator/calculate`, data);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const responseData = await response.json();
-    console.log(responseData.result);
-    return responseData.result; // Возвращаем только result
+    return pesponse;
   } catch (error) {
     console.error("Error in calcRate:", error);
     throw error;
