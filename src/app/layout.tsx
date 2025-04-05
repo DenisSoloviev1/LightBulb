@@ -4,6 +4,7 @@ import "./globals.scss";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import { Loader } from "@/shared/ui";
+import { favicon16, favicon32 } from "../../public";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -15,9 +16,8 @@ export const metadata: Metadata = {
   description:
     "Автоматический подбор оптимального тарифа на электроэнергию для юридических лиц. Анализ потребления и расчет экономии за 5 минут.",
   icons: [
-    { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
-    { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
-    { rel: "apple-touch-icon", url: "/apple-touch-icon.png" }, // Для iOS
+    { rel: "icon", url: favicon16.src, sizes: "16x16" },
+    { rel: "icon", url: favicon32.src, sizes: "32x32" },
   ],
   keywords: [
     "тарифы на электроэнергию",

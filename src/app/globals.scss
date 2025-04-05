@@ -9,6 +9,9 @@
   --color-white: #f0efef;
   --color-blue: #146ef5;
   --color-yellow: #fddb3a;
+
+  /*shadow*/
+  --default-shadow: 0 1px 20px rgba(172, 182, 191, 0.5);
 }
 
 * {
@@ -23,13 +26,13 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 3px; 
-  height: 3px; 
+  width: 3px;
+  height: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888; 
-  border-radius: 2px; 
+  background-color: #888;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -37,7 +40,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 ::-webkit-scrollbar-corner {

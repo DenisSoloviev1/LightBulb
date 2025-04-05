@@ -14,16 +14,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  h1 {
-    font-size: 48px;
-    white-space: nowrap;
-  }
-
-  p {
-    font-size: 20px;
-    margin-top: 16px;
-  }
 }
 
 .section {
@@ -50,6 +40,16 @@
   img {
     z-index: -1;
     position: relative;
+  }
+
+  h1 {
+    font-size: 48px;
+    white-space: nowrap;
+  }
+
+  p {
+    font-size: 20px;
+    margin-top: 16px;
   }
 }
 

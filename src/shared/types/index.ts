@@ -11,3 +11,8 @@ export interface ISliderCard {
   number: string;
   text: string;
 }
+
+export interface Option {
+  id: string;
+  name: string;
+}

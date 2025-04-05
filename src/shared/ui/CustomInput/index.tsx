@@ -10,7 +10,7 @@ interface InputProps {
   type?: string;
 }
 
-export const Input = forwardRef<
+export const CustomInput = forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
   InputProps
 >(({ label, error, type, ...props }, ref) => {

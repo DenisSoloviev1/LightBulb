@@ -9,8 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "../validator";
 import toast from "react-hot-toast";
 import { authUser, IAuth, useAuthStore } from "@/entities/user";
-import { CustomButton, Input } from "@/shared/ui";
-import styles from "../styles.module.scss";
+import { CustomButton, CustomInput } from "@/shared/ui";
+import styles from "../page.module.scss";
 
 export default function AuthForm() {
   // const { setAuth } = useAuthStore();
@@ -62,14 +62,14 @@ export default function AuthForm() {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <h2>Авторизация</h2>
 
-      <Input
+      <CustomInput
         label="Email"
         type="text"
         {...register("email")}
         error={errors.email?.message}
       />
 
-      <Input
+      <CustomInput
         label="Password"
         type={"password"}
         {...register("password")}
