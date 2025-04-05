@@ -3,25 +3,24 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles.module.scss";
 import { Option } from "@/shared/types";
+import { VoltageLevel } from "@/entities/calculator";
 
 export const CustomSelect: React.FC<{
   options: Option[];
   label: string;
-  onSelect: (option: Option) => void;
-  selectedValue?: string;
-}> = ({ options, label, onSelect, selectedValue }) => {
+  value?: number | string | VoltageLevel;
+  error?: string;
+  onChange: (value: number | string | VoltageLevel) => void;
+}> = ({ options, label, value, error, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  // Находим выбранную опцию по значению
-  const selectedOption = options.find((opt) => opt.id === selectedValue);
+  // Находим опцию по значению value
+  const selectedOption = options.find((opt) => opt.value === value);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(event.target as Node)
-      ) {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -30,10 +29,10 @@ export const CustomSelect: React.FC<{
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleSelect = () => setIsOpen(!isOpen);
+  const toggleSelect = () => setIsOpen((prev) => !prev);
 
   const handleOptionClick = (option: Option) => {
-    onSelect(option);
+    onChange(option.value);
     setIsOpen(false);
   };
 
@@ -68,6 +67,8 @@ export const CustomSelect: React.FC<{
           </ul>
         )}
       </div>
+
+      {error && <span className={styles.error}>{error}</span>}
     </div>
   );
 };

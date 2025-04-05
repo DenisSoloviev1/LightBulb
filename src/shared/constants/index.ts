@@ -1,4 +1,5 @@
 import { ISliderCard, Option } from "../types";
+import { VoltageLevel } from "@/entities/calculator";
 
 export const cards: ISliderCard[] = [
   { number: "5+", text: "тарифов" },
@@ -9,44 +10,57 @@ export const cards: ISliderCard[] = [
 ];
 
 export const years: Option[] = [
-  { id: "0", name: "2016" },
-  { id: "1", name: "2017" },
-  { id: "2", name: "2018" },
-  { id: "3", name: "2019" },
-  { id: "4", name: "2020" },
-  { id: "5", name: "2021" },
-  { id: "6", name: "2022" },
-  { id: "7", name: "2023" },
-  { id: "8", name: "2024" },
-  { id: "9", name: "2025" },
+  // { id: "0", value: 2023, name: "2023" },
+  { id: "1", value: 2024, name: "2024" },
+  // { id: "2", value: 2025, name: "2025" },
 ];
 
 export const month: Option[] = [
-  { id: "0", name: "Январь" },
-  { id: "1", name: "Февраль" },
-  { id: "2", name: "Март" },
-  { id: "3", name: "Апрель" },
-  { id: "4", name: "Май" },
-  { id: "5", name: "Июнь" },
-  { id: "6", name: "Июль" },
-  { id: "7", name: "Август" },
-  { id: "8", name: "Сентябрь" },
-  { id: "9", name: "Октябрь" },
-  { id: "10", name: "Ноябрь" },
-  { id: "11", name: "Декабрь" },
+  { id: "0", value: 1, name: "Январь" },
+  { id: "1", value: 2, name: "Февраль" },
+  { id: "2", value: 3, name: "Март" },
+  { id: "3", value: 4, name: "Апрель" },
+  { id: "4", value: 5, name: "Май" },
+  { id: "5", value: 6, name: "Июнь" },
+  { id: "6", value: 7, name: "Июль" },
+  { id: "7", value: 8, name: "Август" },
+  { id: "8", value: 9, name: "Сентябрь" },
+  { id: "9", value: 10, name: "Октябрь" },
+  { id: "10", value: 11, name: "Ноябрь" },
+  { id: "11", value: 12, name: "Декабрь" },
 ];
 
-export const voltage: Option[] = [
-  { id: "0", name: "Высокое напряжение (110 КВ и выше от шин)" },
-  { id: "1", name: "Высокое напряжение (110 КВ и выше)" },
-  { id: "2", name: "Среднее напряжение первого уровня (35 КВ)" },
-  { id: "3", name: "Среднее напряжение второго уровня (20-1 КВ)" },
-  { id: "4", name: "Низкое напряжение (0.4 КВ и ниже)" },
+export const voltageLevels: Option[] = [
+  {
+    id: "0",
+    value: VoltageLevel.HIGH_FROM_BUS,
+    name: "Высокое напряжение (110 КВ и выше от шин)",
+  },
+  {
+    id: "1",
+    value: VoltageLevel.HIGH,
+    name: "Высокое напряжение (110 КВ и выше)",
+  },
+  {
+    id: "2",
+    value: VoltageLevel.MEDIUM_LEVEL_ONE,
+    name: "Среднее напряжение первого уровня (35 КВ)",
+  },
+  {
+    id: "3",
+    value: VoltageLevel.MEDIUM_LEVEL_TWO,
+    name: "Среднее напряжение второго уровня (20-1 КВ)",
+  },
+  {
+    id: "4",
+    value: VoltageLevel.LOW,
+    name: "Низкое напряжение (0.4 КВ и ниже)",
+  },
 ];
 
-export const power: Option[] = [
-  { id: "0", name: "менее 150 кВт" },
-  { id: "1", name: "150 кВт - 670 кВт" },
-  { id: "2", name: "670 кВт - 10 МВт" },
-  { id: "3", name: "не менее 10 МВт" },
+export const maxPowers: Option[] = [
+  { id: "0", value: 50, name: "менее 150 кВт" },
+  { id: "1", value: 500, name: "150 кВт - 670 кВт" },
+  { id: "2", value: 5000, name: "670 кВт - 10 МВт" },
+  { id: "3", value: 50000, name: "не менее 10 МВт" },
 ];

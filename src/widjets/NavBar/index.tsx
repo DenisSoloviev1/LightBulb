@@ -12,7 +12,7 @@ import { LogoSvg } from "@/shared/icon";
 
 export default function NavBar() {
   // const { isAuth, resetAuth } = useAuthStore();
-  const [showMenu, setShowMenu] = useState(false);
+  // const [showMenu, setShowMenu] = useState(false);
   // const router = useRouter();
 
   // function handleAuth(isAuth: boolean) {

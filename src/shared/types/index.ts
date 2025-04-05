@@ -1,3 +1,5 @@
+import { VoltageLevel } from "@/entities/calculator";
+
 type ValueOf<T> = T[keyof T];
 
 export const RolesDict = {
@@ -14,5 +16,6 @@ export interface ISliderCard {
 
 export interface Option {
   id: string;
+  value: number | VoltageLevel;
   name: string;
 }

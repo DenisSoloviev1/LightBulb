@@ -6,49 +6,46 @@ import { EyeOffSvg, EyeSvg } from "@/shared/icon";
 
 interface InputProps {
   label: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   type?: string;
 }
 
-export const CustomInput = forwardRef<
-  HTMLInputElement | HTMLTextAreaElement,
-  InputProps
->(({ label, error, type, ...props }, ref) => {
-  const [showPassword, setShowPassword] = useState(false);
+export const CustomInput = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, onChange, error, type = "text", ...props }, ref) => {
+    const [showPassword, setShowPassword] = useState(false);
 
-  return (
-    <div className={styles.customInput} data-error={error}>
-      <label>{label}</label>
+    return (
+      <div className={styles.customInput} data-error={error}>
+        <label>{label}</label>
 
-      <div className={styles.inputContainer}>
-        {type === "textarea" ? (
-          <textarea ref={ref as React.Ref<HTMLTextAreaElement>} {...props} />
-        ) : type === "password" ? (
-          <>
-            <input
-              type={showPassword ? "text" : "password"}
-              ref={ref as React.Ref<HTMLInputElement>}
-              {...props}
-            />
+        <div className={styles.inputContainer}>
+          {type === "password" ? (
+            <>
+              <input
+                type={showPassword ? "text" : "password"}
+                onChange={onChange}
+                ref={ref}
+                {...props}
+              />
 
-            <button
-              type="button"
-              className={styles.showPasswordButton}
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOffSvg /> : <EyeSvg />}
-            </button>
-          </>
-        ) : (
-          <input
-            type={type}
-            ref={ref as React.Ref<HTMLInputElement>}
-            {...props}
-          />
-        )}
+              <button
+                type="button"
+                className={styles.showPasswordButton}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOffSvg /> : <EyeSvg />}
+              </button>
+            </>
+          ) : (
+            <input type={type} onChange={onChange} ref={ref} {...props} />
+          )}
+        </div>
+
+        {error && <span className={styles.error}>{error}</span>}
       </div>
+    );
+  }
+);
 
-      {error && <span>{error}</span>}
-    </div>
-  );
-});
+CustomInput.displayName = "CustomInput"; // Добавляем displayName для удобства отладки
