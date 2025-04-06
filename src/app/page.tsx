@@ -4,7 +4,7 @@ import { CustomButton } from "@/shared/ui";
 import Image from "next/image";
 import { walcome } from "../../public";
 import { SliderCards } from "@/shared/ui";
-import { cards } from "@/shared/constants";
+import { cards, howItWorks } from "@/shared/constants";
 import NavBar from "@/widjets/NavBar";
 
 export default function Page() {
@@ -20,7 +20,7 @@ export default function Page() {
             <div className={styles.heroText}>
               <h1>
                 Переплачиваете за свет? <br />
-                Подберем тариф за 5 минут
+                Подберем выгодный тариф
               </h1>
 
               <div className={styles.heroContent}>
@@ -40,7 +40,21 @@ export default function Page() {
 
         <SliderCards cards={cards} />
 
-        <div className={styles.section} data-style={"dark"}></div>
+        <div className={styles.section} data-style={"dark"}>
+          <div className={styles.howItWorks}>
+            <h2 className={styles.sectionTitle}>Как это работает</h2>
+            
+            <div className={styles.stepsContainer}>
+              {howItWorks.map((step, index) => (
+                <div key={index} className={styles.stepCard}>
+                  <div className={styles.stepIcon}>{step.icon}</div>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <p className={styles.stepDescription}>{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );
