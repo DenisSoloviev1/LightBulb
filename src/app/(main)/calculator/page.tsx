@@ -2,7 +2,7 @@
 
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { schemaRate } from "@/entities/calculator";
+import { IResult, schemaRate } from "@/entities/calculator";
 import { VoltageLevel, calcRate } from "@/entities/calculator";
 import { CustomButton, CustomInput, CustomSelect } from "@/shared/ui";
 import { years, month, voltageLevels, maxPowers } from "@/shared/constants";
@@ -21,7 +21,7 @@ type FormState = {
 };
 
 export default function CalculatorPage() {
-  const [result, setResult] = useState<{ cost3CK: number; cost4CK: number }>();
+  const [result, setResult] = useState<IResult>();
   const [showHourlyLoad, setShowHourlyLoad] = useState(false);
   const [hourlyLoadData, setHourlyLoadData] = useState<HourlyLoadData[]>(
     Array.from({ length: 24 }, (_, i) => ({
@@ -86,6 +86,7 @@ export default function CalculatorPage() {
       const requestData = prepareRequestData(data);
       const result = await calcRate(requestData);
       setResult(result);
+      console.log(result);
       toast.success("Расчет выполнен успешно");
       reset();
     } catch (error) {
@@ -166,39 +167,37 @@ export default function CalculatorPage() {
               )}
             />
           </div>
-
-          
         </div>
 
         {/* Почасовые данные */}
         <div className={styles.group}>
-            <h3>Указать почасовую нагрузку для более точного подбора?</h3>
-            <CustomButton onClick={() => setShowHourlyLoad(!showHourlyLoad)}>
-              {showHourlyLoad ? "Скрыть" : "Открыть"}
-            </CustomButton>
-          </div>
+          <h3>Указать почасовую нагрузку для более точного подбора?</h3>
+          <CustomButton onClick={() => setShowHourlyLoad(!showHourlyLoad)}>
+            {showHourlyLoad ? "Скрыть" : "Открыть"}
+          </CustomButton>
+        </div>
 
-          {showHourlyLoad ? (
-            <HourlyLoadTable
-              loadData={hourlyLoadData}
-              onLoadDataChange={handleLoadDataChange}
+        {showHourlyLoad ? (
+          <HourlyLoadTable
+            loadData={hourlyLoadData}
+            onLoadDataChange={handleLoadDataChange}
+          />
+        ) : (
+          <div className={styles.fieldContainer}>
+            <CustomInput
+              label="Объем электроэнергии (кВт/ч)"
+              {...register("energyVolume", { valueAsNumber: true })}
             />
-          ) : (
-            <div className={styles.fieldContainer}>
-              <CustomInput
-                label="Объем электроэнергии (кВт/ч)"
-                {...register("energyVolume", { valueAsNumber: true })}
-              />
-              <CustomInput
-                label="Объем мощности (кВт)"
-                {...register("powerVolume", { valueAsNumber: true })}
-              />
-            </div>
-          )}
+            <CustomInput
+              label="Объем мощности (кВт)"
+              {...register("powerVolume", { valueAsNumber: true })}
+            />
+          </div>
+        )}
 
         {/* Кнопка расчета */}
         <div className={styles.formBottom}>
-          <CustomButton disabled={isSubmitting || hasErrors || !isValid}>
+          <CustomButton type="submit" disabled={isSubmitting || hasErrors || !isValid}>
             Рассчитать
           </CustomButton>
         </div>
@@ -206,15 +205,56 @@ export default function CalculatorPage() {
 
       {/* Результаты расчета */}
       {result && (
-        <div className={styles.result}>
-          <h3>Результаты расчета:</h3>
-          <div className={styles.resultItem}>
-            <span>3 ценовая категория:</span>
-            <strong>{result.cost3CK} руб.</strong>
-          </div>
-          <div className={styles.resultItem}>
-            <span>4 ценовая категория:</span>
-            <strong>{result.cost4CK} руб.</strong>
+        <div className={styles.resultContainer}>
+          <h2>Результаты расчета электроэнергии</h2>
+
+          <div className={styles.cardsGrid}>
+            <div className={styles.card}>
+              <h3>Потребление</h3>
+              <p>
+                <span>Электроэнергия:</span>{" "}
+                {result.energyVolume?.toLocaleString() ?? "Н/Д"} кВт·ч
+              </p>
+              <p>
+                <span>Мощность:</span>{" "}
+                {result.powerVolume?.toLocaleString() ?? "Н/Д"} кВт
+              </p>
+            </div>
+
+            <div className={`${styles.card} ${styles.recommendationCard}`}>
+              <h3>Рекомендация</h3>
+              <p>Выгоднее: {result.recommendedCategory ?? "Н/Д"}</p>
+              <p>
+                <span>Экономия:</span>{" "}
+                {result.savings?.toLocaleString("ru-RU", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }) ?? "Н/Д"}{" "}
+                руб.
+              </p>
+            </div>
+
+            <div className={styles.priceCard}>
+              <h3>3 ценовая категория</h3>
+              <p>
+                {result.cost3CK?.toLocaleString("ru-RU", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }) ?? "Н/Д"}{" "}
+                руб.
+              </p>
+            </div>
+
+            <div className={styles.priceCard}>
+              <h3>4 ценовая категория</h3>
+              <p>
+                {result.cost4CK?.toLocaleString("ru-RU", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }) ?? "Н/Д"}{" "}
+                руб.
+              </p>
+            </div>
           </div>
         </div>
       )}

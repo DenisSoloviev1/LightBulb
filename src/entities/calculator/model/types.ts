@@ -17,3 +17,12 @@ export interface ICalc {
     weekend?: number[];
   } | null;
 }
+
+export interface IResult {
+  energyVolume: number;
+  powerVolume: number;
+  cost3CK: number;
+  cost4CK: number;
+  savings: number;
+  recommendedCategory: string;
+}

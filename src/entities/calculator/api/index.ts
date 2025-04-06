@@ -1,5 +1,5 @@
 import { API_URLS } from "@/shared/config/params";
-import { ICalc } from "../model";
+import { ICalc, IResult } from "../model";
 import { apiRequest } from "@/shared/config";
 
 /**
@@ -9,17 +9,15 @@ import { apiRequest } from "@/shared/config";
  * @throws Ошибку при неудачном запросе
  */
 
-export async function calcRate(data: ICalc): Promise<{
-  cost3CK: number;
-  cost4CK: number;
-}> {
+export async function calcRate(data: ICalc): Promise<IResult> {
   try {
-    const pesponse = apiRequest<{
-      cost3CK: number;
-      cost4CK: number;
-    }>("POST", `/calculator/calculate`, data);
+    const pesponse = apiRequest<{ result: IResult }>(
+      "POST",
+      `/calculator/calculate`,
+      data
+    );
 
-    return pesponse;
+    return (await pesponse).result;
   } catch (error) {
     console.error("Error in calcRate:", error);
     throw error;
