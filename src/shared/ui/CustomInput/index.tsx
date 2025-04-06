@@ -47,5 +47,3 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-
-CustomInput.displayName = "CustomInput"; // Добавляем displayName для удобства отладки

@@ -67,3 +67,16 @@
     }
   }
 }
+
+@media screen and (max-width: 650px) {
+  .customInput {
+    label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .inputContainer {
+    font-size: 12px;
+  }
+}

@@ -6,10 +6,10 @@ export enum VoltageLevel {
 }
 
 export interface ICalc {
-  year: number;
-  month: number;
-  voltageLevel: string;
-  maxPower: number;
+  year: number | null;
+  month: number | null;
+  voltageLevel: VoltageLevel;
+  maxPower: number | null;
   energyVolume?: number | null;
   powerVolume?: number | null;
   hourlyConsumption: {
