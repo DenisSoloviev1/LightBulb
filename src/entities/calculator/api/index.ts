@@ -17,7 +17,7 @@ export async function calcRate(data: ICalc): Promise<{
     const pesponse = apiRequest<{
       cost3CK: number;
       cost4CK: number;
-    }>("POST", `${API_URLS.BASE_URL}/calculator/calculate`, data);
+    }>("POST", `/calculator/calculate`, data);
 
     return pesponse;
   } catch (error) {
