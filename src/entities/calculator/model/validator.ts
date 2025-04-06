@@ -19,11 +19,15 @@ export const schemaRate = z.object({
     .number({ invalid_type_error: "Мощность обязательна" })
     .positive("Мощность должна быть положительной"),
 
-  energyVolume: z
-    .number({ invalid_type_error: "Объем энергии обязателен" })
-    .nonnegative("Энергия не может быть отрицательной"),
+  energyVolume: z.union([
+    z.number({ invalid_type_error: "Объем энергии обязателен" })
+      .nonnegative("Энергия не может быть отрицательной"),
+    z.null()
+  ]),
 
-  powerVolume: z
-    .number({ invalid_type_error: "Объем мощности обязателен" })
-    .nonnegative("Мощность не может быть отрицательной"),
+  powerVolume: z.union([
+    z.number({ invalid_type_error: "Объем мощности обязателен" })
+      .nonnegative("Мощность не может быть отрицательной"),
+    z.null()
+  ]),
 });

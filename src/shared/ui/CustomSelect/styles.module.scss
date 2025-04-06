@@ -86,3 +86,15 @@
     border-bottom-right-radius: 5px;
   }
 }
+
+@media screen and (max-width: 650px) {
+  .customSelect {
+    label {
+      font-size: 12px;
+    }
+  }
+
+  .defaultOption {
+    font-size: 12px;
+  }
+}

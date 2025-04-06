@@ -16,8 +16,8 @@ type FormState = {
   month: number;
   voltageLevel: VoltageLevel;
   maxPower: number;
-  energyVolume: number;
-  powerVolume: number;
+  energyVolume: number | null;
+  powerVolume: number | null;
 };
 
 export default function CalculatorPage() {
@@ -46,11 +46,11 @@ export default function CalculatorPage() {
     mode: "onChange",
     defaultValues: {
       year: 0,
-      month: 0,
+      month: 1,
       voltageLevel: VoltageLevel.LOW,
       maxPower: 0,
-      energyVolume: 0,
-      powerVolume: 0,
+      energyVolume: null,
+      powerVolume: null,
     },
   });
 
